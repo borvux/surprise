@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayyy!</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <main class="container">
+        <div id="success-container">
+            <img class="main-image" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z4ZnY4ZnY4ZnY4ZnY4ZnY4ZnY4ZnY4ZnY4ZnY4ZnY/26BRv0ThflsY/giphy.gif" alt="Celebration">
+            
+            <h1 class="success-text">Yayyy! I love you! ❤️</h1>
+        </div>
+    </main>
+
+    <script>
+        // Internal script for the celebration page to fire confetti automatically
+        document.addEventListener('DOMContentLoaded', () => {
+            const defaults = {
+                spread: 360,
+                ticks: 100,
+                gravity: 0,
+                decay: 0.94,
+                startVelocity: 30,
+                shapes: ['heart'],
+                colors: ['#FFC0CB', '#FF69B4', '#FF1493', '#C71585']
+            };
+
+            confetti({
+                ...defaults,
+                particleCount: 50,
+                scalar: 2
+            });
+
+            confetti({
+                ...defaults,
+                particleCount: 25,
+                scalar: 3
+            });
+
+            confetti({
+                ...defaults,
+                particleCount: 10,
+                scalar: 4
+            });
+        });
+    </script>
+</body>
+</html>
