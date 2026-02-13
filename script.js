@@ -2,25 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const yesBtn = document.getElementById('yes-btn');
     const noBtn = document.getElementById('no-btn');
     const speechBubble = document.getElementById('speech-bubble'); 
-    const audio = document.getElementById('bg-music'); // Select the audio
     
-    // --- MUSIC AUTOPLAY LOGIC ---
-    // Try to play audio immediately
-    if (audio) {
-        audio.volume = 0.5; // Set volume to 50% so it's not too loud
-        audio.play().catch(error => {
-            // If autoplay is blocked, wait for the first interaction
-            console.log("Autoplay blocked. Waiting for interaction.");
+    // MUSIC & OVERLAY ELEMENTS
+    const audio = document.getElementById('bg-music');
+    const overlay = document.getElementById('music-overlay');
+    const startBtn = document.getElementById('start-btn');
+
+    // --- NEW: HANDLE START BUTTON ---
+    if (startBtn && overlay && audio) {
+        startBtn.addEventListener('click', () => {
+            // 1. Play Music (Works because user clicked!)
+            audio.volume = 0.5;
+            audio.play().catch(err => console.log("Audio play error:", err));
             
-            const playAudio = () => {
-                audio.play();
-                // Remove listeners once it starts playing
-                document.removeEventListener('click', playAudio);
-                document.removeEventListener('touchstart', playAudio);
-            };
-            
-            document.addEventListener('click', playAudio);
-            document.addEventListener('touchstart', playAudio);
+            // 2. Fade out overlay
+            overlay.classList.add('hidden');
         });
     }
 

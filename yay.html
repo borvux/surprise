@@ -9,6 +9,11 @@
 </head>
 <body>
 
+    <audio id="bg-music" autoplay loop>
+        <source src="yay.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <main class="container">
         <div id="success-container">
             <img class="main-image" src="https://image.myanimelist.net/ui/EM-jcFVsF8d609_tCk9eH6FZgTsjJPes9hBMyY_No4aO7aYj2WdQpd5jVaqkaN7O6itcn1PtGMY41oga9kTtNR9M7AhSyoIOkrbVyvuxSEFqOOjaX5OMNEH1FGM4s6mI68m4txriOyxBeG3epfYmvvIj6FiFJMyj8X3hSoPn7Rpez5K0JTJ808mJydZfWhOD" alt="Celebration">
@@ -21,6 +26,21 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- MUSIC BACKUP LOGIC ---
+            // Just in case 'autoplay' fails, try to force it
+            const audio = document.getElementById('bg-music');
+            if (audio) {
+                audio.volume = 0.5;
+                audio.play().catch(err => {
+                    console.log("Autoplay failed (browser policy). waiting for interaction.");
+                    document.body.addEventListener('click', () => {
+                        audio.play();
+                    }, { once: true });
+                });
+            }
+
+            // --- CONFETTI LOGIC ---
             const defaults = {
                 spread: 360,
                 ticks: 100,

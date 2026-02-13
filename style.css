@@ -187,3 +187,66 @@ button {
         font-size: 0.9rem;
     }
 }
+
+/* =========================================
+   9. MUSIC OVERLAY (NEW)
+========================================= */
+#music-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffe6e6; /* Matches background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* sits on top of everything */
+    transition: opacity 0.5s ease; /* fade out effect */
+}
+
+.overlay-content {
+    text-align: center;
+    animation: float 2s ease-in-out infinite;
+}
+
+.overlay-content h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.overlay-content p {
+    font-size: 1.2rem;
+    color: #d32f2f;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+#start-btn {
+    background-color: #d32f2f;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+#start-btn:hover {
+    transform: scale(1.1);
+    background-color: #b71c1c;
+}
+
+/* Helper to hide overlay */
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Cute floating animation for the start screen */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
