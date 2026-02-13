@@ -1,60 +1,123 @@
 document.addEventListener('DOMContentLoaded', () => {
     const yesBtn = document.getElementById('yes-btn');
     const noBtn = document.getElementById('no-btn');
+    const speechBubble = document.getElementById('speech-bubble'); 
+    const audio = document.getElementById('bg-music'); // Select the audio
     
+    // --- MUSIC AUTOPLAY LOGIC ---
+    // Try to play audio immediately
+    if (audio) {
+        audio.volume = 0.5; // Set volume to 50% so it's not too loud
+        audio.play().catch(error => {
+            // If autoplay is blocked, wait for the first interaction
+            console.log("Autoplay blocked. Waiting for interaction.");
+            
+            const playAudio = () => {
+                audio.play();
+                // Remove listeners once it starts playing
+                document.removeEventListener('click', playAudio);
+                document.removeEventListener('touchstart', playAudio);
+            };
+            
+            document.addEventListener('click', playAudio);
+            document.addEventListener('touchstart', playAudio);
+        });
+    }
+
     let yesScale = 1;
-    let isFirstMove = true; // Flag to track the first interaction
+    let isFirstMove = true;
+    
+    // MESSAGES
+    const messages = [
+        "Don't you dare click NO!!!!!",
+        "Just click YES already!",
+        "If you say NO, I will cry... 😭",
+        "Stop chasing the NO 💔",
+        "I am absolutely NOT letting you click NO!",
+        "The YES looks very tempting 🥺",
+        "You can't escape the NO 😈"
+    ];
+    let messageIndex = 0; 
+
+    const MAX_SCALE = 2.2; 
+    
+    if(yesBtn) {
+        yesBtn.style.setProperty('--yes-scale', yesScale);
+    }
 
     /* Move the "No" Button */
     const moveNoButton = () => {
-        
-        // CRITICAL FIX: Handle the first move smoothly
         if (isFirstMove) {
-            // 1. Get current position before moving
             const rect = noBtn.getBoundingClientRect();
-            
-            // 2. Set absolute position at the EXACT same spot it currently is
             noBtn.style.position = "absolute";
             noBtn.style.left = rect.left + "px";
             noBtn.style.top = rect.top + "px";
-            
-            // 3. Force a "reflow" (tell browser to update layout instantly)
-            // This prevents the "jump" and enables the transition
             void noBtn.offsetWidth; 
-            
             isFirstMove = false;
         }
 
-        // Standard Logic: Calculate random position
-        const maxWidth = window.innerWidth - noBtn.offsetWidth;
-        const maxHeight = window.innerHeight - noBtn.offsetHeight;
+        const noWidth = noBtn.offsetWidth;
+        const noHeight = noBtn.offsetHeight;
+        const maxWidth = window.innerWidth - noWidth;
+        const maxHeight = window.innerHeight - noHeight;
+        const yesRect = yesBtn.getBoundingClientRect();
 
-        const randomX = Math.random() * maxWidth;
-        const randomY = Math.random() * maxHeight;
+        let randomX, randomY;
+        let overlap = false;
+        let attempts = 0;
 
-        // Apply new position (now it will always animate smoothly)
+        do {
+            randomX = Math.random() * maxWidth;
+            randomY = Math.random() * maxHeight;
+
+            const noLeft = randomX;
+            const noRight = randomX + noWidth;
+            const noTop = randomY;
+            const noBottom = randomY + noHeight;
+
+            overlap = (
+                noLeft < yesRect.right + 10 &&
+                noRight > yesRect.left - 10 &&
+                noTop < yesRect.bottom + 10 &&
+                noBottom > yesRect.top - 10
+            );
+            attempts++;
+        } while (overlap && attempts < 50);
+
         noBtn.style.left = randomX + "px";
         noBtn.style.top = randomY + "px";
 
-        // Scale Yes Button
-        yesScale += 0.2; 
-        yesBtn.style.transform = `scale(${yesScale})`;
+        if(speechBubble) {
+            messageIndex = (messageIndex + 1) % messages.length;
+            speechBubble.innerText = messages[messageIndex];
+        }
+
+        if (yesScale < MAX_SCALE) {
+            yesScale += 0.2; 
+            yesBtn.style.setProperty('--yes-scale', yesScale);
+        }
+
+        yesBtn.classList.remove('shake'); 
+        void yesBtn.offsetWidth; 
+        yesBtn.classList.add('shake');
     };
 
     /* Event Listeners */
-    noBtn.addEventListener('mouseover', moveNoButton);
+    if(noBtn) {
+        noBtn.addEventListener('mouseover', moveNoButton);
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            moveNoButton();
+        });
+    }
 
-    noBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        moveNoButton();
-    });
-
-    noBtn.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        moveNoButton();
-    });
-
-    yesBtn.addEventListener('click', () => {
-        window.location.href = "yay.html";
-    });
+    if(yesBtn) {
+        yesBtn.addEventListener('click', () => {
+            window.location.href = "yay.html";
+        });
+    }
 });

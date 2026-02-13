@@ -15,7 +15,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* This is critical for the button coordinates */
     position: relative; 
     overflow: hidden; 
 }
@@ -30,15 +29,57 @@ body {
     padding: 20px;
 }
 
+/* Wrapper for the index page image/bubble */
+.character-wrapper {
+    position: relative; 
+    display: inline-block; 
+}
+
 /* =========================================
-   3. IMAGES & TEXT
+   3. SPEECH BUBBLE
+========================================= */
+#speech-bubble {
+    background: #ffffff;
+    color: #d32f2f;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    
+    position: absolute;
+    top: -70px;   
+    right: -40px; 
+    width: 160px; 
+    z-index: 10;
+    transition: transform 0.2s ease; 
+}
+
+#speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px; 
+    left: 20px;   
+    border-width: 10px 10px 0;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+}
+
+/* =========================================
+   4. IMAGES & TEXT
 ========================================= */
 .main-image {
     max-width: 100%;
     height: auto;
     max-height: 300px;
     border-radius: 15px;
+    
+    /* FIXED: Ensures image is centered even when display is block */
+    display: block; 
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 20px;
+    
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
@@ -49,14 +90,16 @@ h1 {
 }
 
 /* =========================================
-   4. BUTTON STYLES
+   5. BUTTON STYLES
 ========================================= */
 .buttons {
     display: flex;
-    justify-content: center;
+    flex-direction: column; 
+    justify-content: flex-start; 
     align-items: center;
     gap: 20px;
-    min-height: 60px;
+    height: 150px; 
+    width: 100%;
 }
 
 button {
@@ -66,9 +109,7 @@ button {
     border-radius: 50px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    
-    /* SHARED ANIMATION SETTINGS */
-    /* Changed to 0.7s for a slower, smoother feel */
+    width: 120px; 
     transition: all 0.7s ease; 
 }
 
@@ -76,17 +117,55 @@ button {
     background-color: #4CAF50; 
     color: white;
     z-index: 10; 
+    transform: scale(var(--yes-scale, 1));
+    transition: transform 0.2s ease; 
 }
 
 #no-btn {
     background-color: #f44336; 
     color: white;
-    /* Added transition here specifically for movement properties */
+    z-index: 20; 
     transition: top 0.7s ease, left 0.7s ease, background-color 0.2s;
 }
 
 /* =========================================
-   5. MOBILE ADJUSTMENTS
+   6. SHAKE ANIMATION
+========================================= */
+.shake {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%   { transform: scale(var(--yes-scale)) rotate(0deg); }
+    25%  { transform: scale(var(--yes-scale)) rotate(-10deg); }
+    50%  { transform: scale(var(--yes-scale)) rotate(10deg); }
+    75%  { transform: scale(var(--yes-scale)) rotate(-10deg); }
+    100% { transform: scale(var(--yes-scale)) rotate(0deg); }
+}
+
+/* =========================================
+   7. BACK BUTTON STYLE
+========================================= */
+.btn-back {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: #fff;
+    color: #d32f2f;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, background-color 0.2s;
+}
+
+.btn-back:hover {
+    background-color: #fce4ec;
+    transform: scale(1.05);
+}
+
+/* =========================================
+   8. MOBILE ADJUSTMENTS
 ========================================= */
 @media (max-width: 600px) {
     h1 {
@@ -100,5 +179,11 @@ button {
     button {
         padding: 10px 20px;
         font-size: 1rem;
+    }
+    
+    #speech-bubble {
+        right: -10px;
+        top: -70px; 
+        font-size: 0.9rem;
     }
 }
