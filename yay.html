@@ -1,12 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yayyy!</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Yayyy! ❤️</title>
+
+    <!-- Primary meta -->
+    <meta name="description" content="They said yes! 🎉 A confetti-filled Valentine’s celebration page with music." />
+    <meta name="theme-color" content="#ffe6e6" />
+
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Icons -->
+    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yayyy! Happy Valentine’s Day! ❤️" />
+    <meta property="og:description"
+        content="They said yes! 🎉 A confetti-filled Valentine’s celebration page with music." />
+    <meta property="og:url" content="https://borvux.github.io/surprise/yay.html" />
+    <meta property="og:image" content="https://borvux.github.io/surprise/og-image-yay.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Yayyy! ❤️" />
+    <meta name="twitter:description"
+        content="They said yes! 🎉 A confetti-filled Valentine’s celebration page with music." />
+    <meta name="twitter:image" content="https://borvux.github.io/surprise/og-image-yay.png" />
+
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
+
 <body>
 
     <audio id="bg-music" autoplay loop>
@@ -16,8 +50,10 @@
 
     <main class="container">
         <div id="success-container">
-            <img class="main-image" src="https://image.myanimelist.net/ui/EM-jcFVsF8d609_tCk9eH6FZgTsjJPes9hBMyY_No4aO7aYj2WdQpd5jVaqkaN7O6itcn1PtGMY41oga9kTtNR9M7AhSyoIOkrbVyvuxSEFqOOjaX5OMNEH1FGM4s6mI68m4txriOyxBeG3epfYmvvIj6FiFJMyj8X3hSoPn7Rpez5K0JTJ808mJydZfWhOD" alt="Celebration">
-            
+            <img class="main-image"
+                src="https://image.myanimelist.net/ui/EM-jcFVsF8d609_tCk9eH6FZgTsjJPes9hBMyY_No4aO7aYj2WdQpd5jVaqkaN7O6itcn1PtGMY41oga9kTtNR9M7AhSyoIOkrbVyvuxSEFqOOjaX5OMNEH1FGM4s6mI68m4txriOyxBeG3epfYmvvIj6FiFJMyj8X3hSoPn7Rpez5K0JTJ808mJydZfWhOD"
+                alt="Celebration">
+
             <h1 class="success-text">Yayyy! Happy Valentine Days!!!! ❤️</h1>
 
             <a href="index.html" class="btn-back">Go Back</a>
@@ -26,7 +62,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
+
             // --- MUSIC BACKUP LOGIC ---
             // Just in case 'autoplay' fails, try to force it
             const audio = document.getElementById('bg-music');
@@ -71,4 +107,5 @@
         });
     </script>
 </body>
+
 </html>

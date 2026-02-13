@@ -1,11 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Valentine?</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Will You Be My Valentine? 💌</title>
+
+    <!-- Primary meta -->
+    <meta name="description"
+        content="A cute interactive Valentine’s page with music and a playful Yes/No challenge. Tap to open and answer the question!" />
+    <meta name="theme-color" content="#ffe6e6" />
+
+    <!-- PWA: link manifest on all installable pages -->
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- Icons -->
+    <link rel="icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Will You Be My Valentine? 💌" />
+    <meta property="og:description"
+        content="A cute interactive Valentine’s page with music and a playful Yes/No challenge." />
+    <meta property="og:url" content="https://borvux.github.io/surprise/" />
+    <meta property="og:image" content="https://borvux.github.io/surprise/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Will You Be My Valentine? 💌" />
+    <meta name="twitter:description"
+        content="A cute interactive Valentine’s page with music and a playful Yes/No challenge." />
+    <meta name="twitter:image" content="https://borvux.github.io/surprise/og-image.png" />
+
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
     <div id="music-overlay">
@@ -23,17 +58,18 @@
 
     <main class="container">
         <div id="question-container">
-            
+
             <div class="character-wrapper">
-                
+
                 <div id="speech-bubble">Don't you dare click NO!</div>
 
-                <img class="main-image" src="https://cdn-images-1.medium.com/max/500/1*SPnifN_DaUGB3MD4ZvLpxQ.gif" alt="Cute Miffy Running">
-            
+                <img class="main-image" src="https://cdn-images-1.medium.com/max/500/1*SPnifN_DaUGB3MD4ZvLpxQ.gif"
+                    alt="Cute Miffy Running">
+
             </div>
-            
+
             <h1 class="question-text">Will you be my Valentine?</h1>
-            
+
             <div class="buttons">
                 <button id="yes-btn">Yes</button>
                 <button id="no-btn">No</button>
@@ -43,4 +79,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
