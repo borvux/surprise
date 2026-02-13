@@ -2,43 +2,15 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Keep this neutral (some apps fall back to <title>) -->
-  <title>Click here for a surprise 👀</title>
-
-  <!-- Neutral description (avoid spoilers) -->
-  <meta name="description" content="Click here for a surprise." />
-  <meta name="theme-color" content="#ffe6e6" />
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json" />
-
-  <!-- Icons -->
-  <link rel="icon" href="favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-
-  <!-- Open Graph (iMessage uses these for rich link previews) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Surprise" />
-  <meta property="og:title" content="Click here for a surprise 👀" />
-  <meta property="og:description" content="Open this link for a surprise." />
-  <meta property="og:url" content="https://borvux.github.io/surprise/" />
-
-  <!-- Use your existing icon.jpg as the big preview image -->
-  <meta property="og:image" content="https://borvux.github.io/surprise/icon.jpg" />
-  <meta property="og:image:type" content="image/jpeg" />
-
-  <!-- Twitter (many apps also read these; safe to include) -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Click here for a surprise 👀" />
-  <meta name="twitter:description" content="Open this link for a surprise." />
-  <meta name="twitter:image" content="https://borvux.github.io/surprise/icon.jpg" />
-
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Click here for a surprise 👀</title>
+    <meta name="description" content="Click here for a surprise." />
+    <meta name="theme-color" content="#ffe6e6" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
@@ -58,26 +30,27 @@
 
     <main class="container">
         <div id="question-container">
-
             <div class="character-wrapper">
-
                 <div id="speech-bubble">Don't you dare click NO!</div>
-
                 <img class="main-image" src="https://cdn-images-1.medium.com/max/500/1*SPnifN_DaUGB3MD4ZvLpxQ.gif"
                     alt="Cute Miffy Running">
-
             </div>
-
             <h1 class="question-text">Will you be my Valentine?</h1>
-
             <div class="buttons">
                 <button id="yes-btn">Yes</button>
                 <button id="no-btn">No</button>
             </div>
         </div>
+
+        <div id="success-container" style="display: none;">
+            <img class="main-image"
+                src="https://image.myanimelist.net/ui/EM-jcFVsF8d609_tCk9eH6FZgTsjJPes9hBMyY_No4aO7aYj2WdQpd5jVaqkaN7O6itcn1PtGMY41oga9kTtNR9M7AhSyoIOkrbVyvuxSEFqOOjaX5OMNEH1FGM4s6mI68m4txriOyxBeG3epfYmvvIj6FiFJMyj8X3hSoPn7Rpez5K0JTJ808mJydZfWhOD"
+                alt="Celebration">
+            <h1 class="success-text">Hehe… I knew you’d say yes ❤️</h1>
+            <a href="index.html" class="btn-back">Go Back</a>
+        </div>
     </main>
 
     <script src="script.js"></script>
 </body>
-
 </html>

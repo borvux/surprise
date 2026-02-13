@@ -113,7 +113,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(yesBtn) {
         yesBtn.addEventListener('click', () => {
-            window.location.href = "yay.html";
+            // 1. Hide Question, Show Success
+            const questionContainer = document.getElementById('question-container');
+            const successContainer = document.getElementById('success-container');
+            
+            if (questionContainer && successContainer) {
+                questionContainer.style.display = 'none';
+                successContainer.style.display = 'block';
+            }
+
+            // 2. Change Music
+            // Since the user *just* clicked, we are allowed to change and play audio
+            if (audio) {
+                audio.pause();
+                // Set the new source directly
+                audio.querySelector('source').src = "yay.mp3"; 
+                // Important: tell the audio element to load the new source
+                audio.load(); 
+                audio.play().catch(e => console.log("Audio error:", e));
+            }
+
+            // 3. Trigger Confetti
+            triggerConfetti();
         });
     }
+
+    // Add this helper function at the bottom of your file or outside the event listener
+    const triggerConfetti = () => {
+        const defaults = {
+            spread: 360,
+            ticks: 100,
+            gravity: 0,
+            decay: 0.94,
+            startVelocity: 30,
+            shapes: ['heart'],
+            colors: ['#FFC0CB', '#FF69B4', '#FF1493', '#C71585']
+        };
+
+        confetti({
+            ...defaults,
+            particleCount: 50,
+            scalar: 2
+        });
+
+        confetti({
+            ...defaults,
+            particleCount: 25,
+            scalar: 3
+        });
+
+        confetti({
+            ...defaults,
+            particleCount: 10,
+            scalar: 4
+        });
+    };
 });
