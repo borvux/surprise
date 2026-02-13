@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const yesBtn = document.getElementById('yes-btn');
     const noBtn = document.getElementById('no-btn');
-    const speechBubble = document.getElementById('speech-bubble'); 
-    
+    const speechBubble = document.getElementById('speech-bubble');
+
     // MUSIC & OVERLAY ELEMENTS
     const audio = document.getElementById('bg-music');
     const overlay = document.getElementById('music-overlay');
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // 1. Play Music (Works because user clicked!)
             audio.volume = 0.5;
             audio.play().catch(err => console.log("Audio play error:", err));
-            
+
             // 2. Fade out overlay
             overlay.classList.add('hidden');
         });
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let yesScale = 1;
     let isFirstMove = true;
-    
+
     // MESSAGES
     const messages = [
         "Don't you dare click NO!!!!!",
@@ -33,11 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         "The YES looks very tempting 🥺",
         "You can't escape the NO 😈"
     ];
-    let messageIndex = 0; 
+    let messageIndex = 0;
 
-    const MAX_SCALE = 2.2; 
-    
-    if(yesBtn) {
+    const MAX_SCALE = 2.2;
+
+    if (yesBtn) {
         yesBtn.style.setProperty('--yes-scale', yesScale);
     }
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             noBtn.style.position = "absolute";
             noBtn.style.left = rect.left + "px";
             noBtn.style.top = rect.top + "px";
-            void noBtn.offsetWidth; 
+            void noBtn.offsetWidth;
             isFirstMove = false;
         }
 
@@ -83,23 +83,23 @@ document.addEventListener('DOMContentLoaded', () => {
         noBtn.style.left = randomX + "px";
         noBtn.style.top = randomY + "px";
 
-        if(speechBubble) {
+        if (speechBubble) {
             messageIndex = (messageIndex + 1) % messages.length;
             speechBubble.innerText = messages[messageIndex];
         }
 
         if (yesScale < MAX_SCALE) {
-            yesScale += 0.2; 
+            yesScale += 0.2;
             yesBtn.style.setProperty('--yes-scale', yesScale);
         }
 
-        yesBtn.classList.remove('shake'); 
-        void yesBtn.offsetWidth; 
+        yesBtn.classList.remove('shake');
+        void yesBtn.offsetWidth;
         yesBtn.classList.add('shake');
     };
 
     /* Event Listeners */
-    if(noBtn) {
+    if (noBtn) {
         noBtn.addEventListener('mouseover', moveNoButton);
         noBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -111,12 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if(yesBtn) {
+    if (yesBtn) {
         yesBtn.addEventListener('click', () => {
             // 1. Hide Question, Show Success
             const questionContainer = document.getElementById('question-container');
             const successContainer = document.getElementById('success-container');
-            
+
             if (questionContainer && successContainer) {
                 questionContainer.style.display = 'none';
                 successContainer.style.display = 'block';
@@ -127,9 +127,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (audio) {
                 audio.pause();
                 // Set the new source directly
-                audio.querySelector('source').src = "yay.mp3"; 
+                audio.querySelector('source').src = "yay.mp3";
                 // Important: tell the audio element to load the new source
-                audio.load(); 
+                audio.load();
                 audio.play().catch(e => console.log("Audio error:", e));
             }
 
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
             decay: 0.94,
             startVelocity: 30,
             shapes: ['heart'],
-            colors: ['#FFC0CB', '#FF69B4', '#FF1493', '#C71585']
+            colors: ['#4FC3F7', '#81D4FA', '#E1F5FE', '#FFFFFF', '#B3E5FC'] // <--- BLUE THEME
         };
 
         confetti({

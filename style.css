@@ -8,8 +8,8 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #ffe6e6;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #E0F7FA 0%, #E3F2FD 100%);
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -29,6 +29,16 @@ body {
     padding: 20px;
 }
 
+/* Glass aesthetic wrapper (No positioning added here!) */
+.glass-card {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 40px;
+    padding: 40px 20px;
+    border: 2px solid #fff;
+    box-shadow: 0 10px 30px rgba(41, 182, 246, 0.2);
+    display: block; 
+}
+
 /* Wrapper for the index page image/bubble */
 .character-wrapper {
     position: relative; 
@@ -40,15 +50,16 @@ body {
 ========================================= */
 #speech-bubble {
     background: #ffffff;
-    color: #d32f2f;
+    color: #0277BD; 
     padding: 10px 15px;
     border-radius: 20px;
     font-weight: bold;
     font-size: 1rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    
+    font-family: 'Fredoka', sans-serif;
+
     position: absolute;
-    top: -70px;   
+    top: -70px;    
     right: -40px; 
     width: 160px; 
     z-index: 10;
@@ -59,7 +70,7 @@ body {
     content: '';
     position: absolute;
     bottom: -8px; 
-    left: 20px;   
+    left: 20px;    
     border-width: 10px 10px 0;
     border-style: solid;
     border-color: #ffffff transparent transparent transparent;
@@ -73,18 +84,16 @@ body {
     height: auto;
     max-height: 300px;
     border-radius: 15px;
-    
-    /* FIXED: Ensures image is centered even when display is block */
     display: block; 
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 h1 {
-    color: #d32f2f;
+    color: #0277BD; 
+    font-family: 'Fredoka', sans-serif;
     margin-bottom: 30px;
     font-size: 2rem;
 }
@@ -105,6 +114,7 @@ h1 {
 button {
     padding: 12px 24px;
     font-size: 1.2rem;
+    font-family: 'Fredoka', sans-serif;
     border: none;
     border-radius: 50px;
     cursor: pointer;
@@ -114,19 +124,25 @@ button {
 }
 
 #yes-btn {
-    background-color: #4CAF50; 
+    background: linear-gradient(135deg, #4FC3F7 0%, #29B6F6 100%);
     color: white;
     z-index: 10; 
     transform: scale(var(--yes-scale, 1));
     transition: transform 0.2s ease; 
 }
 
+/* --- THE REQUESTED CHANGE --- */
 #no-btn {
-    background-color: #f44336; 
-    color: white;
+    background-color: #FF8A80; /* Light Pink/Red */
+    color: white; 
     z-index: 20; 
     transition: top 0.7s ease, left 0.7s ease, background-color 0.2s;
 }
+
+#no-btn:hover {
+    background-color: #FF5252; /* Darker red on hover */
+}
+/* ---------------------------- */
 
 /* =========================================
    6. SHAKE ANIMATION
@@ -136,11 +152,11 @@ button {
 }
 
 @keyframes shake {
-    0%   { transform: scale(var(--yes-scale)) rotate(0deg); }
-    25%  { transform: scale(var(--yes-scale)) rotate(-10deg); }
-    50%  { transform: scale(var(--yes-scale)) rotate(10deg); }
-    75%  { transform: scale(var(--yes-scale)) rotate(-10deg); }
-    100% { transform: scale(var(--yes-scale)) rotate(0deg); }
+    0%    { transform: scale(var(--yes-scale)) rotate(0deg); }
+    25%   { transform: scale(var(--yes-scale)) rotate(-10deg); }
+    50%   { transform: scale(var(--yes-scale)) rotate(10deg); }
+    75%   { transform: scale(var(--yes-scale)) rotate(-10deg); }
+    100%  { transform: scale(var(--yes-scale)) rotate(0deg); }
 }
 
 /* =========================================
@@ -151,7 +167,7 @@ button {
     margin-top: 20px;
     padding: 10px 25px;
     background-color: #fff;
-    color: #d32f2f;
+    color: #0277BD; 
     text-decoration: none;
     font-weight: bold;
     border-radius: 50px;
@@ -160,7 +176,7 @@ button {
 }
 
 .btn-back:hover {
-    background-color: #fce4ec;
+    background-color: #E1F5FE;
     transform: scale(1.05);
 }
 
@@ -189,7 +205,7 @@ button {
 }
 
 /* =========================================
-   9. MUSIC OVERLAY (NEW)
+   9. MUSIC OVERLAY
 ========================================= */
 #music-overlay {
     position: fixed;
@@ -197,33 +213,42 @@ button {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #ffe6e6; /* Matches background */
+    background: linear-gradient(135deg, #E0F7FA 0%, #B3E5FC 100%);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100; /* sits on top of everything */
-    transition: opacity 0.5s ease; /* fade out effect */
+    z-index: 100;
+    transition: opacity 0.5s ease;
 }
 
 .overlay-content {
     text-align: center;
     animation: float 2s ease-in-out infinite;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 30px;
+    border-radius: 30px;
 }
 
 .overlay-content h1 {
     font-size: 4rem;
     margin-bottom: 10px;
+    font-family: 'Fredoka', sans-serif;
 }
 
 .overlay-content p {
     font-size: 1.2rem;
-    color: #d32f2f;
+    color: #0277BD; 
     margin-bottom: 20px;
     font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+}
+
+.sticker-decoration {
+    font-size: 4rem;
 }
 
 #start-btn {
-    background-color: #d32f2f;
+    background-color: #29B6F6;
     color: white;
     padding: 15px 30px;
     font-size: 1.2rem;
@@ -232,20 +257,19 @@ button {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     transition: transform 0.2s;
+    font-family: 'Fredoka', sans-serif;
 }
 
 #start-btn:hover {
     transform: scale(1.1);
-    background-color: #b71c1c;
+    background-color: #0277BD;
 }
 
-/* Helper to hide overlay */
 .hidden {
     opacity: 0;
     pointer-events: none;
 }
 
-/* Cute floating animation for the start screen */
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
